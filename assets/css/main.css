@@ -1,0 +1,112 @@
+/* ===== VARIABLES CSS ===== */
+:root {
+    /* Colores */
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --off-white: #fafafa;
+    --grey: #666666;
+    --light-grey: #e8e8e8;
+    --forest: #3d5a4c;
+    --sage: #8fa89f;
+    --gold: #b8956a;
+    
+    /* Tipografía */
+    --font-cinzel: 'Cinzel', serif;
+    --font-cormorant: 'Cormorant', serif;
+    --font-libre: 'Libre Baskerville', serif;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== RESET Y ESTILOS BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-cormorant);
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+/* ===== UTILIDADES ===== */
+.text-center { text-align: center; }
+.text-gold { color: var(--gold); }
+.text-forest { color: var(--forest); }
+.bg-white { background: var(--white); }
+.bg-off-white { background: var(--off-white); }
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { 
+        opacity: 0.85; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.05); 
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+}

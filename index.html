@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naty & Carlos - Nuestra Boda</title>
+    
+    <!-- Preconnect para fuentes externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <!-- Se cargará dinámicamente desde components/header.html -->
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-watercolor"></div>
+            <div class="hero-content">
+                <p class="hero-subtitle">Celebra con Nosotros</p>
+                <div class="elegant-line"></div>
+                <h1 class="hero-names">
+                    Naty<span class="hero-ampersand">&</span>Carlos
+                </h1>
+                <div class="elegant-line"></div>
+                <p class="hero-date">28 de Febrero · 2026</p>
+                <p class="hero-location">Los Cedros Quinta</p>
+            </div>
+        </section>
+
+        <!-- Galería de Fotos -->
+        <div class="watercolor-divider"></div>
+        <section class="photo-section" id="gallery">
+            <h2 class="section-title">Nuestros Momentos</h2>
+            <div class="photo-grid" id="photoGrid">
+                <!-- Las fotos se cargarán dinámicamente desde JS -->
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <div class="watercolor-divider"></div>
+        <section class="section-green" id="timeline">
+            <h2 class="section-title section-title-green">Nuestro Día</h2>
+            <div class="timeline" id="timelineContainer">
+                <!-- Timeline se cargará dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Ubicación -->
+        <div class="watercolor-divider"></div>
+        <section class="section" id="location">
+            <h2 class="section-title">El Lugar</h2>
+            <div class="location-container">
+                <!-- Contenido de ubicación -->
+            </div>
+        </section>
+
+        <!-- Mesa de Regalos -->
+        <section class="section" id="gifts">
+            <div class="registry-section">
+                <div class="registry-icon">🎁</div>
+                <h3>Mesa de Regalos</h3>
+                <p>Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo, tenemos mesa de regalos en Liverpool.</p>
+                <div class="registry-placeholder">
+                    Próximamente: Link a Mesa de Regalos Liverpool
+                </div>
+            </div>
+        </section>
+
+        <!-- Nota Niños -->
+        <section class="section" id="no-kids">
+            <div class="no-kids-banner">
+                  <h4>Evento Solo para Adultos</h4>
+            <p>Queremos que disfrutes de una noche sin preocupaciones.<br>
+            Esta es una celebración exclusiva para adultos.<br>
+            Agradecemos tu comprensión.</p>
+            </div>
+        </section>
+
+        <!-- Formulario RSVP -->
+<section class="section" id="rsvp">
+    <div class="form-wrapper" id="formWrapper">
+        <div class="form-header">
+            <h2>Confirma tu Asistencia</h2>
+            <p style="text-align: center; margin: 18px 0; color: var(--grey); font-size: 15px;">Fecha límite: 15 de Febrero, 2026</p>
+        </div>
+        <form id="rsvpForm">
+            <div class="form-group">
+                <label class="form-label">Nombre Completo *</label>
+                <input type="text" id="nombre" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Teléfono *</label>
+                <input type="tel" id="telefono" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="email" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">¿Asistirás? *</label>
+                <div class="radio-grid">
+                    <div class="radio-item">
+                        <input type="radio" id="si" name="asistencia" value="si" required>
+                        <label for="si">Sí Asistiré</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="no" name="asistencia" value="no" required>
+                        <label for="no">No Podré</label>
+                    </div>
+                </div>
+            </div>
+            <!-- ELIMINAMOS los campos de numPersonas y nombreAcompanante -->
+            <div class="form-group">
+                <label class="form-label">Mensaje (Opcional)</label>
+                <textarea id="mensaje" class="form-textarea"></textarea>
+            </div>
+            
+            <!-- El mensaje de "pase único" se agregará aquí automáticamente via JavaScript -->
+            
+            <button type="submit" class="submit-button" id="submitBtn">Enviar Confirmación</button>
+        </form>
+    </div>
+
+    <div class="qr-display" id="qrDisplay">
+        <!-- ... contenido del QR ... -->
+    </div>
+
+    <div class="success-wrapper" id="successWrapper">
+        <!-- ... mensaje de éxito ... -->
+    </div>
+</section>
+ 
+  </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <!-- Se cargará dinámicamente -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="module" src="assets/js/firebase.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/qr-generator.js"></script>
+</body>
+</html>
