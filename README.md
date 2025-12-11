@@ -25,37 +25,3 @@ boda/
 ├── pages/ # Páginas adicionales
 ├── components/ # Componentes reutilizables
 └── data/ # Datos y configuración
-
-text
-
-## 🚀 Instalación y Uso
-
-### Requisitos
-- Node.js (opcional, para desarrollo)
-- Cuenta de Firebase
-### Pasos para desarrollo
-
-1. **Clonar el proyecto:**
-
-git clone <tu-repositorio>
-cd boda
-2. **Configurar Firebase:**
-
-Crea un proyecto en Firebase Console
-
-Obtén la configuración y actualiza assets/js/firebase.js
-
-Habilita Firestore Database
-
-3. **Servir localmente:**
-
-bash
-# Con Python (simple)
-python3 -m http.server 8000
-
-# Con Node.js (opcional)
-npx serve .
-
-4. **Acceder:**
-
-Abre http://localhost:8000 en tu navegador.
