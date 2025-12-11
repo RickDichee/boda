@@ -1,0 +1,23 @@
+{
+  "app": {
+    "name": "Naty & Carlos - Nuestra Boda",
+    "version": "1.0.0",
+    "description": "Sitio web para la boda de Naty y Carlos"
+  },
+  "wedding": {
+    "date": "2026-02-28",
+    "time": "18:00",
+    "location": "Los Cedros Quinta",
+    "address": "Av. José María Morelos #497, San Miguel del Monte"
+  },
+  "form": {
+    "deadline": "2026-02-15",
+    "maxGuests": 1
+  },
+  "features": {
+    "qrGeneration": true,
+    "offlineSupport": true,
+    "firebaseIntegration": true,
+    "responsiveDesign": true
+  }
+}

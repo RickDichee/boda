@@ -1,0 +1,187 @@
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .hero-names {
+        font-size: clamp(50px, 10vw, 90px);
+    }
+    
+    .timeline-item {
+        grid-template-columns: 90px 1fr;
+        gap: 25px;
+        padding: 25px;
+    }
+    
+    .location-container,
+    .registry-section {
+        margin: 40px auto;
+    }
+}
+
+/* Tablets pequeñas */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    /* Timeline responsive */
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .timeline-time {
+        font-size: 32px;
+    }
+    
+    /* Galería responsive */
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .photo-card img {
+        height: 300px;
+    }
+    
+    /* Formulario responsive */
+    .radio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-wrapper,
+    .registry-section {
+        padding: 30px 20px;
+    }
+    
+    .location-header {
+        padding: 40px 25px;
+    }
+    
+    .location-body {
+        padding: 30px;
+    }
+    
+    .watercolor-divider {
+        height: 150px;
+    }
+    
+    .watercolor-divider::before,
+    .watercolor-divider::after {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* Textos ajustados */
+    .section-title {
+        font-size: clamp(28px, 5vw, 40px);
+        margin-bottom: 40px;
+    }
+    
+    .hero-date {
+        font-size: clamp(20px, 3.5vw, 30px);
+    }
+    
+    .hero-location {
+        font-size: clamp(11px, 1.8vw, 14px);
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    :root {
+        --spacing-md: 0.75rem;
+        --spacing-lg: 1.25rem;
+        --spacing-xl: 1.75rem;
+    }
+    
+    .hero {
+        min-height: 90vh;
+        padding: var(--spacing-md);
+    }
+    
+    .hero-watercolor {
+        width: 300px;
+        height: 300px;
+        right: -30px;
+    }
+    
+    .hero-names {
+        font-size: clamp(40px, 8vw, 60px);
+    }
+    
+    .hero-ampersand {
+        font-size: clamp(35px, 7vw, 50px);
+        margin: 0 10px;
+    }
+    
+    .elegant-line {
+        width: 100px;
+        margin: 25px auto;
+    }
+    
+    .photo-section {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .timeline-content h3 {
+        font-size: 22px;
+    }
+    
+    .location-detail {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .map-link {
+        padding: 12px 25px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .no-kids-banner,
+    .qr-display,
+    .success-wrapper {
+        margin: 30px auto;
+        padding: 25px 20px;
+    }
+    
+    .download-btn {
+        width: 100%;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .photo-grid {
+        max-width: 1300px;
+    }
+    
+    .timeline {
+        max-width: 900px;
+    }
+}
+
+/* Orientación landscape móvil */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 80px 20px;
+    }
+    
+    .hero-names {
+        margin: 15px 0;
+    }
+    
+    .elegant-line {
+        margin: 20px auto;
+    }
+}
