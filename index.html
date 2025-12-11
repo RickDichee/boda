@@ -18,145 +18,225 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Celebra con nosotros el día de nuestra boda. Naty & Carlos - 28 de Febrero 2026 - Los Cedros Quinta">
+    <meta name="keywords" content="boda, matrimonio, Naty, Carlos, celebración, invitación, boda México">
+    <meta name="author" content="Naty & Carlos">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Naty & Carlos - Nuestra Boda">
+    <meta property="og:description" content="Celebra con nosotros el día de nuestra boda. 28 de Febrero 2026">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://carlosynaty.mx">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <!-- Se cargará dinámicamente desde components/header.html -->
-    </header>
-
-    <!-- Contenido Principal -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-watercolor"></div>
-            <div class="hero-content">
-                <p class="hero-subtitle">Celebra con Nosotros</p>
-                <div class="elegant-line"></div>
-                <h1 class="hero-names">
-                    Naty<span class="hero-ampersand">&</span>Carlos
-                </h1>
-                <div class="elegant-line"></div>
-                <p class="hero-date">28 de Febrero · 2026</p>
-                <p class="hero-location">Los Cedros Quinta</p>
-            </div>
-        </section>
-
-        <!-- Galería de Fotos -->
-        <div class="watercolor-divider"></div>
-        <section class="photo-section" id="gallery">
-            <h2 class="section-title">Nuestros Momentos</h2>
-            <div class="photo-grid" id="photoGrid">
-                <!-- Las fotos se cargarán dinámicamente desde JS -->
-            </div>
-        </section>
-
-        <!-- Timeline -->
-        <div class="watercolor-divider"></div>
-        <section class="section-green" id="timeline">
-            <h2 class="section-title section-title-green">Nuestro Día</h2>
-            <div class="timeline" id="timelineContainer">
-                <!-- Timeline se cargará dinámicamente -->
-            </div>
-        </section>
-
-        <!-- Ubicación -->
-        <div class="watercolor-divider"></div>
-        <section class="section" id="location">
-            <h2 class="section-title">El Lugar</h2>
-            <div class="location-container">
-                <!-- Contenido de ubicación -->
-            </div>
-        </section>
-
-        <!-- Mesa de Regalos -->
-        <section class="section" id="gifts">
-            <div class="registry-section">
-                <div class="registry-icon">🎁</div>
-                <h3>Mesa de Regalos</h3>
-                <p>Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo, tenemos mesa de regalos en Liverpool.</p>
-                <div class="registry-placeholder">
-                    Próximamente: Link a Mesa de Regalos Liverpool
-                </div>
-            </div>
-        </section>
-
-        <!-- Nota Niños -->
-        <section class="section" id="no-kids">
-            <div class="no-kids-banner">
-                  <h4>Evento Solo para Adultos</h4>
-            <p>Queremos que disfrutes de una noche sin preocupaciones.<br>
-            Esta es una celebración exclusiva para adultos.<br>
-            Agradecemos tu comprensión.</p>
-            </div>
-        </section>
-
-        <!-- Formulario RSVP -->
-<section class="section" id="rsvp">
-    <div class="form-wrapper" id="formWrapper">
-        <div class="form-header">
-            <h2>Confirma tu Asistencia</h2>
-            <p style="text-align: center; margin: 18px 0; color: var(--grey); font-size: 15px;">Fecha límite: 15 de Febrero, 2026</p>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-watercolor"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Celebra con Nosotros</p>
+            <div class="elegant-line"></div>
+            <h1 class="hero-names">
+                Naty<span class="hero-ampersand">&</span>Carlos
+            </h1>
+            <div class="elegant-line"></div>
+            <p class="hero-date">28 de Febrero · 2026</p>
+            <p class="hero-location">Los Cedros Quinta</p>
         </div>
-        <form id="rsvpForm">
-            <div class="form-group">
-                <label class="form-label">Nombre Completo *</label>
-                <input type="text" id="nombre" class="form-input" required>
+    </section>
+
+    <!-- ===== WATERCOLOR DIVIDER ===== -->
+    <div class="watercolor-divider"></div>
+
+    <!-- ===== GALERÍA DE FOTOS ===== -->
+    <section class="photo-section section" id="gallery">
+        <h2 class="section-title">Nuestros Momentos</h2>
+        <div class="photo-grid" id="photoGrid">
+            <!-- Las fotos se cargarán dinámicamente desde JavaScript -->
+        </div>
+    </section>
+
+    <!-- ===== WATERCOLOR DIVIDER ===== -->
+    <div class="watercolor-divider"></div>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="section-green section" id="timeline">
+        <h2 class="section-title section-title-green">Nuestro Día</h2>
+        <div class="timeline" id="timelineContainer">
+            <!-- Timeline se cargará dinámicamente -->
+        </div>
+    </section>
+
+    <!-- ===== WATERCOLOR DIVIDER ===== -->
+    <div class="watercolor-divider"></div>
+
+    <!-- ===== UBICACIÓN ===== -->
+    <section class="section" id="location">
+        <h2 class="section-title">El Lugar</h2>
+        <div class="location-container">
+            <div class="location-header">
+                <div class="location-icon">🌲</div>
+                <h3 class="location-name">Los Cedros Quinta</h3>
+                <p class="location-type">Jardín de Eventos</p>
             </div>
-            <div class="form-group">
-                <label class="form-label">Teléfono *</label>
-                <input type="tel" id="telefono" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="email" id="email" class="form-input">
-            </div>
-            <div class="form-group">
-                <label class="form-label">¿Asistirás? *</label>
-                <div class="radio-grid">
-                    <div class="radio-item">
-                        <input type="radio" id="si" name="asistencia" value="si" required>
-                        <label for="si">Sí Asistiré</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="no" name="asistencia" value="no" required>
-                        <label for="no">No Podré</label>
+            <div class="location-body">
+                <div class="location-detail">
+                    <div class="location-detail-icon">📍</div>
+                    <div class="location-detail-content">
+                        <h4>Dirección</h4>
+                        <p>Av. José María Morelos #497<br>San Miguel del Monte</p>
                     </div>
                 </div>
+                <div style="text-align: center;">
+                    <a href="https://maps.app.goo.gl/BYvXwS8ub6WJnUEu5" target="_blank" class="map-link">Ver en Google Maps</a>
+                </div>
             </div>
-            <!-- ELIMINAMOS los campos de numPersonas y nombreAcompanante -->
-            <div class="form-group">
-                <label class="form-label">Mensaje (Opcional)</label>
-                <textarea id="mensaje" class="form-textarea"></textarea>
+        </div>
+    </section>
+
+    <!-- ===== MESA DE REGALOS ===== -->
+    <section class="section" id="gifts">
+        <div class="registry-section">
+            <div class="registry-icon">🎁</div>
+            <h3>Mesa de Regalos</h3>
+            <p>Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo, tenemos mesa de regalos en Liverpool.</p>
+            <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51895506" 
+               target="_blank" 
+               class="liverpool-link">
+                <span class="link-icon">🎁</span>
+                <span class="link-text">Ver nuestra Mesa de Regalos en Liverpool</span>
+                <span class="link-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== NOTA SOLO ADULTOS ===== -->
+    <section class="section" id="no-kids">
+        <div class="no-kids-banner">
+            <h4>Evento Solo para Adultos</h4>
+            <p>Esta es una celebración exclusiva para adultos.<br>Agradecemos tu comprensión.</p>
+        </div>
+    </section>
+
+    <!-- ===== FORMULARIO RSVP ===== -->
+    <section class="section" id="rsvp">
+        <!-- Formulario de confirmación -->
+        <div class="form-wrapper" id="formWrapper">
+            <div class="form-header">
+                <h2>Confirma tu Asistencia</h2>
+                <p style="text-align: center; margin: 18px 0; color: var(--grey); font-size: 15px;">
+                    Fecha límite: 15 de Febrero, 2026
+                </p>
             </div>
             
-            <!-- El mensaje de "pase único" se agregará aquí automáticamente via JavaScript -->
-            
-            <button type="submit" class="submit-button" id="submitBtn">Enviar Confirmación</button>
-        </form>
-    </div>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label class="form-label">Nombre Completo *</label>
+                    <input type="text" id="nombre" class="form-input" required placeholder="Tu nombre completo">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Teléfono *</label>
+                    <input type="tel" id="telefono" class="form-input" required placeholder="Tu número de teléfono">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="tu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">¿Asistirás? *</label>
+                    <div class="radio-grid">
+                        <div class="radio-item">
+                            <input type="radio" id="si" name="asistencia" value="si" required>
+                            <label for="si">Sí Asistiré</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="no" name="asistencia" value="no" required>
+                            <label for="no">No Podré</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NOTA: Solo 1 persona, sin campos de acompañante -->
+                
+                <div class="form-group">
+                    <label class="form-label">Mensaje (Opcional)</label>
+                    <textarea id="mensaje" class="form-textarea" placeholder="Escribe un mensaje especial para nosotros..."></textarea>
+                </div>
+                
+                <!-- Mensaje de Pase Único -->
+                <div class="unique-pass-message">
+                    <div style="text-align: center; font-size: 14px; color: var(--grey); padding: 20px; border-top: 1px solid var(--light-grey); margin-top: 20px;">
+                        <p style="margin-bottom: 10px;"><strong>♥ Un detalle importante para nuestra celebración ♥</strong></p>
+                        <p style="font-style: italic; line-height: 1.5;">
+                            Para asegurar que todos nuestros seres queridos disfruten de este día especial con comodidad y seguridad, 
+                            <strong>cada invitación es personal e intransferible</strong>. 
+                            El código QR que generes será tu pase único para el evento. 
+                            Agradecemos de corazón que respetes esta intención.
+                        </p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-button" id="submitBtn">
+                    Enviar Confirmación
+                </button>
+            </form>
+        </div>
+        
+        <!-- Sección QR (inicialmente oculta) -->
+        <div class="qr-display" id="qrDisplay">
+            <h3 style="font-family: 'Libre Baskerville', serif; font-size: 30px; margin-bottom: 18px;">
+                ¡Confirmación Exitosa!
+            </h3>
+            <p style="font-size: 16px; color: var(--grey); margin-bottom: 25px;">
+                Guarda este código QR. Lo necesitarás para entrar a la boda.
+            </p>
+            <div class="qr-code-container">
+                <div id="qrcode"></div>
+            </div>
+            <p class="qr-instructions">
+                <strong>Importante:</strong><br>
+                • Toma una captura de pantalla de este QR<br>
+                • También te lo enviaremos por email<br>
+                • Preséntalo a la entrada el día de la boda
+            </p>
+            <button onclick="downloadQR()" class="download-btn">
+                Descargar QR
+            </button>
+        </div>
+        
+        <!-- Mensaje de éxito (inicialmente oculto) -->
+        <div class="success-wrapper" id="successWrapper">
+            <div class="success-icon">🤍</div>
+            <h3 style="font-family: 'Libre Baskerville', serif; font-size: 34px; margin-bottom: 18px;">
+                ¡Gracias!
+            </h3>
+            <p style="font-size: 17px; color: var(--grey);">
+                Hemos recibido tu confirmación.<br>Nos vemos el 28 de Febrero.
+            </p>
+        </div>
+    </section>
 
-    <div class="qr-display" id="qrDisplay">
-        <!-- ... contenido del QR ... -->
-    </div>
-
-    <div class="success-wrapper" id="successWrapper">
-        <!-- ... mensaje de éxito ... -->
-    </div>
-</section>
- 
-  </main>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <!-- Se cargará dinámicamente -->
+    <!-- ===== FOOTER ===== -->
+    <footer style="text-align: center; padding: 40px 20px; background: var(--off-white); border-top: 1px solid var(--light-grey); margin-top: 60px;">
+        <p style="font-family: var(--font-cinzel); font-size: 12px; letter-spacing: 2px; color: var(--grey);">
+            Con mucho amor, Naty & Carlos<br>
+            28 de Febrero 2026
+        </p>
+        <p style="margin-top: 15px; font-size: 11px; color: var(--grey); opacity: 0.7;">
+            Desarrollado con ❤️ para nuestra boda
+        </p>
     </footer>
 
-    <!-- Scripts -->
+    <!-- ===== SCRIPTS ===== -->
+    <!-- QRCode Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script type="module" src="assets/js/firebase.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <script type="module" src="assets/js/qr-generator.js"></script>
+    
+    <!-- Nuestro JavaScript Unificado -->
+    <script src="assets/js/main-unificado.js"></script>
 </body>
 </html>
