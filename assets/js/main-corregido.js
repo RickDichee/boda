@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initTimeline();
     initFormLogic();
     initScrollAnimations();
-    addUniquePassMessage();
 });
 
 // ===== FUNCIONES =====
@@ -107,29 +106,7 @@ function initFormLogic() {
     }
 }
 
-function addUniquePassMessage() {
-    const form = document.getElementById('rsvpForm');
-    if (!form) return;
-    
-    const submitBtn = document.getElementById('submitBtn');
-    if (!submitBtn) return;
-    
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'unique-pass-message';
-    messageDiv.innerHTML = `
-        <div style="text-align: center; font-size: 14px; color: var(--grey); padding: 20px; border-top: 1px solid var(--light-grey); margin-top: 20px;">
-            <p style="margin-bottom: 10px;"><strong>♥ Un detalle importante para nuestra celebración ♥</strong></p>
-            <p style="font-style: italic; line-height: 1.5;">
-                Para asegurar que todos nuestros seres queridos disfruten de este día especial con comodidad y seguridad, 
-                <strong>cada invitación es personal e intransferible</strong>. 
-                El código QR que generes será tu pase único para el evento. 
-                Agradecemos de corazón que respetes esta intención.
-            </p>
-        </div>
-    `;
-    
-    form.insertBefore(messageDiv, submitBtn);
-}
+
 
 function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {

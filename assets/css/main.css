@@ -40,22 +40,12 @@ html {
 }
 
 body {
-    /* Tus propiedades actuales */
-    font-family: 'Dancing Script', 'Playfair Display', serif;
+    font-family: var(--font-cormorant);
     margin: 0;
     padding: 0;
-    
-    /* NUEVAS propiedades para la textura */
-    background-image: url('../images/textura-fondo.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    
-    /* Mantén el resto */
-    color: #5d4037;
+    background: var(--white);
+    color: var(--black);
     line-height: 1.6;
-}
 }
 
 img {
