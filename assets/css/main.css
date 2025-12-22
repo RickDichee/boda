@@ -36,10 +36,14 @@
 }
 
 html {
+    width: 100%;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
 body {
+    width: 100%;
+    overflow-x: hidden;
     font-family: var(--font-cormorant);
     margin: 0;
     padding: 0;
