@@ -40,12 +40,22 @@ html {
 }
 
 body {
-    font-family: var(--font-cormorant);
-    background: var(--white);
-    color: var(--black);
-    overflow-x: hidden;
+    /* Tus propiedades actuales */
+    font-family: 'Dancing Script', 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    
+    /* NUEVAS propiedades para la textura */
+    background-image: url('../images/textura-fondo.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    /* Mantén el resto */
+    color: #5d4037;
     line-height: 1.6;
-    font-size: 16px;
+}
 }
 
 img {
@@ -109,4 +119,328 @@ button {
 
 .fade-in {
     animation: fadeInUp 0.8s ease forwards;
+}
+/* Fondo semitransparente para secciones */
+.container, .invitacion-content, .gallery, 
+.countdown-container, .location-details {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Botón de mapa mejorado */
+.map-btn {
+    background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.map-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(233, 30, 99, 0.3);
+}
+/* ===== CORRECCIÓN DE FONDOS Y TRANSPARENCIAS ===== */
+
+/* Fondo con transparencia muy tenue (10% de opacidad) */
+body {
+    background-color: rgba(255, 248, 242, 0.1) !important;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Efecto parallax suave para el fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/textura-fondo.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    opacity: 0.85; /* Transparencia tenue */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ===== CORRECCIÓN DE LA DOBLE CAJA EN "NUESTRA CELEBRACIÓN" ===== */
+#ubicacion {
+    padding: 25px !important;
+    margin: 20px auto !important;
+}
+
+#ubicacion .container {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.location-details {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 250, 245, 0.95) 100%) !important;
+    border-radius: 15px;
+    padding: 30px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ===== ESTILOS UNIFICADOS PARA TODOS LOS BOTONES/RECUADROS ===== */
+
+/* Botón de Google Maps - Estilo unificado */
+.map-btn, .btn-primary, .btn {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%) !important;
+    color: white !important;
+    padding: 14px 28px !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    margin-top: 15px !important;
+    font-weight: 600 !important;
+    font-family: 'Dancing Script', 'Playfair Display', serif !important;
+    font-size: 1.2em !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3) !important;
+    text-align: center !important;
+    cursor: pointer !important;
+}
+
+.map-btn:hover, .btn-primary:hover, .btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4) !important;
+}
+
+.map-btn i, .btn-primary i, .btn i {
+    margin-right: 8px !important;
+}
+
+/* ===== ELIMINAR SQUIRCLES (formas redondeadas excesivas) ===== */
+.container, .invitacion-content, .gallery, 
+.countdown-container, .form-container,
+.rsvp-form, .form-control, input, textarea, select {
+    border-radius: 12px !important;
+}
+
+/* ===== FORMULARIO CON ESTILO UNIFICADO ===== */
+.rsvp-form {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 250, 245, 0.95) 100%) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 30px !important;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+    border-color: #2e7d32 !important;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1) !important;
+}
+
+/* ===== MESA DE REGALOS - Mismo estilo ===== */
+#mesa-regalos, #regalos, .gift-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 250, 245, 0.95) 100%) !important;
+    border-radius: 15px !important;
+    padding: 30px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ===== GALERÍA ARREGLADA ===== */
+.photo-card {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.3s ease !important;
+    background: white !important;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px) !important;
+}
+
+/* ===== CORRECCIÓN DEL FORMULARIO QUE NO ENVÍA ===== */
+#submitBtn:disabled {
+    opacity: 0.7 !important;
+    cursor: not-allowed !important;
+}
+
+
+/* ===== ESTILO UNIFICADO DE FORMULARIO PARA TODAS LAS SECCIONES ===== */
+.unified-form-style {
+    /* Fondo idéntico al formulario RSVP */
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+    
+    /* Bordes y sombras idénticas */
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    
+    /* Espaciado idéntico */
+    padding: 40px !important;
+    margin: 30px auto !important;
+    
+    /* Tipografía idéntica */
+    font-family: 'Segoe UI', 'Roboto', sans-serif !important;
+    color: #f0f0f0 !important;
+    
+    /* Ancho máximo */
+    max-width: 800px !important;
+    width: 90% !important;
+}
+
+/* ===== TÍTULOS ESTILO FORMULARIO ===== */
+.unified-form-style h2,
+.unified-form-style h3,
+.unified-form-style .subtitle {
+    font-family: 'Dancing Script', 'Playfair Display', serif !important;
+    text-align: center !important;
+    margin-bottom: 25px !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.unified-form-style h2 {
+    font-size: 2.8em !important;
+    margin-bottom: 10px !important;
+    background: linear-gradient(45deg, #e91e63, #ff9800) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.unified-form-style .subtitle {
+    font-size: 1.2em !important;
+    color: #cccccc !important;
+    margin-bottom: 30px !important;
+    font-style: italic !important;
+}
+
+.unified-form-style h3 {
+    font-size: 1.8em !important;
+    color: #ff9800 !important;
+    margin: 25px 0 15px 0 !important;
+    border-bottom: 2px solid rgba(255, 152, 0, 0.3) !important;
+    padding-bottom: 10px !important;
+}
+
+/* ===== TEXTO Y PÁRRAFOS ESTILO FORMULARIO ===== */
+.unified-form-style p {
+    font-size: 1.1em !important;
+    line-height: 1.6 !important;
+    margin: 15px 0 !important;
+    color: #e0e0e0 !important;
+}
+
+.unified-form-style p i {
+    color: #ff9800 !important;
+    margin-right: 12px !important;
+    width: 20px !important;
+    text-align: center !important;
+}
+
+/* ===== BOTONES ESTILO FORMULARIO ===== */
+.unified-form-style .map-btn,
+.unified-form-style .gift-btn {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #e91e63 0%, #ff9800 100%) !important;
+    color: white !important;
+    padding: 14px 32px !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 1.1em !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3) !important;
+    text-align: center !important;
+    margin: 20px 0 !important;
+    cursor: pointer !important;
+    font-family: 'Segoe UI', 'Roboto', sans-serif !important;
+}
+
+.unified-form-style .map-btn:hover,
+.unified-form-style .gift-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5) !important;
+    background: linear-gradient(135deg, #ff9800 0%, #e91e63 100%) !important;
+}
+
+.unified-form-style .map-btn i,
+.unified-form-style .gift-btn i {
+    margin-right: 10px !important;
+    font-size: 1.1em !important;
+}
+
+/* ===== LISTAS ESTILO FORMULARIO ===== */
+.unified-form-style ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 20px 0 !important;
+}
+
+.unified-form-style ul li {
+    padding: 12px 15px !important;
+    margin: 8px 0 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 10px !important;
+    border-left: 4px solid #ff9800 !important;
+    transition: all 0.3s ease !important;
+}
+
+.unified-form-style ul li:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateX(5px) !important;
+}
+
+.unified-form-style ul li i {
+    color: #e91e63 !important;
+    margin-right: 10px !important;
+}
+
+/* ===== APLICAR ESTILOS A LAS SECCIONES ===== */
+#ubicacion .location-details,
+#mesa-regalos .gift-details,
+#regalos,
+.gift-section {
+    composes: unified-form-style;
+}
+
+
+
+
+
+/* ===== GALERÍA CON UNA SOLA FOTO CENTRADA ===== */
+#photoGrid {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 500px !important;
+}
+
+.photo-card {
+    max-width: 600px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.photo-card img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 15px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
 }
