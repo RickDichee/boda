@@ -28,14 +28,30 @@
         padding: var(--spacing-lg) 0;
     }
     
-    /* Timeline responsive */
+    /* Timeline responsive - Versión lineal */
+    .timeline::before {
+        display: none;
+    }
+    
     .timeline-item {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 20px;
+        padding: 25px;
+        border-left: 3px solid var(--gold);
+        direction: ltr;
+    }
+    
+    .timeline-item::before {
+        display: none;
+    }
+    
+    .timeline-item:nth-child(even) {
+        direction: ltr;
     }
     
     .timeline-time {
-        font-size: 32px;
+        font-size: 36px;
+        color: var(--gold);
     }
     
     /* Galería responsive */
@@ -55,7 +71,7 @@
     
     .form-wrapper,
     .registry-section {
-        padding: 30px 20px;
+        padding: 35px 25px;
     }
     
     .location-header {
@@ -80,6 +96,12 @@
     .section-title {
         font-size: clamp(28px, 5vw, 40px);
         margin-bottom: 40px;
+    }
+    .section-title::after {
+        width: 90px;
+        height: 4px;
+        margin: 14px auto 0;
+        border-radius: 3px;
     }
     
     .hero-date {
