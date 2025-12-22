@@ -1,6 +1,7 @@
 /* ===== WATERCOLOR DIVIDER ===== */
 .watercolor-divider {
     height: 250px;
+    margin: 0 -20px;
     background: 
         radial-gradient(ellipse at 20% 50%, rgba(184, 149, 106, 0.12) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 50%, rgba(143, 168, 159, 0.1) 0%, transparent 50%),
