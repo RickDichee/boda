@@ -1,8 +1,34 @@
+// ===== FIREBASE IMPORT =====
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+// ===== FIREBASE CONFIG =====
+const firebaseConfig = {
+    apiKey: "***REMOVED***",
+    authDomain: "boda-nyc.firebaseapp.com",
+    projectId: "boda-nyc",
+    storageBucket: "boda-nyc.firebasestorage.app",
+    messagingSenderId: "470601485280",
+    appId: "1:470601485280:web:21319eb00ca630800ff985"
+};
+
+// Inicializar Firebase
+let app;
+let db;
+
+try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    console.log('Firebase inicializado correctamente');
+} catch (error) {
+    console.error('Error inicializando Firebase:', error);
+}
+
 // ===== CONFIGURACIÓN =====
 const CONFIG = {
     appName: 'Naty & Carlos Boda',
     weddingDate: '28 de Febrero 2026',
-    location: 'Los Cedros Quinta',
+    location: 'Salón Zimpanio',
     maxGuests: 1
 };
 
@@ -106,6 +132,35 @@ function initFormLogic() {
     }
 }
 
+// ===== FIREBASE FUNCTIONS =====
+async function saveToFirebase(formData) {
+    if (!db) {
+        console.warn('Firebase no está disponible, guardando localmente');
+        return;
+    }
+    
+    try {
+        const confirmationData = {
+            nombre: formData.nombre,
+            telefono: formData.telefono,
+            email: formData.email,
+            asistencia: formData.asistencia,
+            mensaje: formData.mensaje,
+            confirmationId: formData.confirmationId,
+            numPersonas: formData.numPersonas,
+            timestamp: serverTimestamp(),
+            createdAt: new Date().toISOString()
+        };
+        
+        const docRef = await addDoc(collection(db, 'confirmations'), confirmationData);
+        console.log('Confirmación guardada en Firebase:', docRef.id);
+        return docRef.id;
+    } catch (error) {
+        console.error('Error guardando en Firebase:', error);
+        throw error;
+    }
+}
+
 
 
 function initScrollAnimations() {
@@ -139,8 +194,8 @@ function handleFormSubmit(e) {
     
     const formData = getFormData();
     
-    // Simular envío (por ahora)
-    setTimeout(() => {
+    // Guardar en Firebase
+    saveToFirebase(formData).then(() => {
         generateQRCode(formData.confirmationId, formData);
         
         formWrapper.style.display = 'none';
@@ -151,7 +206,12 @@ function handleFormSubmit(e) {
         
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar Confirmación';
-    }, 1500);
+    }).catch((error) => {
+        console.error('Error guardando confirmación:', error);
+        alert('Hubo un error al guardar tu confirmación. Por favor intenta de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Confirmación';
+    });
 }
 
 function validateForm() {
