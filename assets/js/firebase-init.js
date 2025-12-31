@@ -11,7 +11,8 @@ async function initFirebase() {
         const { getFirestore, collection, addDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const firebaseConfig = {
-            apiKey: "***REMOVED***",
+            // apiKey removed from repository for security. Inject at deployment.
+            apiKey: "REDACTED_GOOGLE_API_KEY",
             authDomain: "boda-nyc.firebaseapp.com",
             projectId: "boda-nyc",
             storageBucket: "boda-nyc.firebasestorage.app",

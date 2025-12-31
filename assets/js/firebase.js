@@ -5,7 +5,8 @@ import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.g
 
 // Configuración de Firebase (usa la misma que ya tienes)
 const firebaseConfig = {
-    apiKey: "***REMOVED***",
+    // apiKey removed from repository for security. Provide via build-time env or config file.
+    apiKey: "REDACTED_GOOGLE_API_KEY",
     authDomain: "boda-nyc.firebaseapp.com",
     projectId: "boda-nyc",
     storageBucket: "boda-nyc.firebasestorage.app",
