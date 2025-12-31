@@ -133,13 +133,15 @@ function initFormLogic() {
 }
 
 // ===== FIREBASE FUNCTIONS =====
-async function saveToFirebase(formData) {
-    if (!db) {
-        console.warn('Firebase no está disponible, continuando sin guardar');
-        return;
-    }
-    
-    try {
+function saveToFirebase(formData) {
+    // Retorna una promesa que se resuelve inmediatamente
+    return new Promise((resolve) => {
+        if (!db) {
+            console.warn('Firebase no disponible');
+            resolve();
+            return;
+        }
+        
         const confirmationData = {
             nombre: formData.nombre,
             telefono: formData.telefono,
@@ -151,14 +153,16 @@ async function saveToFirebase(formData) {
             createdAt: new Date().toISOString()
         };
         
-        const docRef = await addDoc(collection(db, 'confirmations'), confirmationData);
-        console.log('Confirmación guardada en Firebase:', docRef.id);
-        return docRef.id;
-    } catch (error) {
-        console.error('Error guardando en Firebase:', error);
-        // Continuar sin guardar en Firebase (no es crítico)
-        return null;
-    }
+        addDoc(collection(db, 'confirmations'), confirmationData)
+            .then(docRef => {
+                console.log('Guardado en Firebase:', docRef.id);
+                resolve(docRef.id);
+            })
+            .catch(error => {
+                console.warn('Error Firebase (no crítico):', error);
+                resolve(); // Resolver igual aunque falle
+            });
+    });
 }
 
 
@@ -194,32 +198,21 @@ function handleFormSubmit(e) {
     
     const formData = getFormData();
     
-    // Guardar en Firebase (no crítico si falla)
-    saveToFirebase(formData).then(() => {
-        // Continuar incluso si Firebase falla
-        generateQRCode(formData.confirmationId, formData);
-        
-        formWrapper.style.display = 'none';
-        qrDisplay.classList.add('show');
-        qrDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        e.target.reset();
-        
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar Confirmación';
-    }).catch((error) => {
-        console.error('Error en el proceso:', error);
-        // Mostrar QR de todas formas
-        generateQRCode(formData.confirmationId, formData);
-        
-        formWrapper.style.display = 'none';
-        qrDisplay.classList.add('show');
-        qrDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        e.target.reset();
-        
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar Confirmación';
+    // Generar QR inmediatamente
+    generateQRCode(formData.confirmationId, formData);
+    
+    formWrapper.style.display = 'none';
+    qrDisplay.classList.add('show');
+    qrDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    e.target.reset();
+    
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Enviar Confirmación';
+    
+    // Guardar en Firebase en background (no crítico)
+    saveToFirebase(formData).catch(err => {
+        console.warn('Firebase error (no crítico):', err);
     });
 }
 
