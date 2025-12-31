@@ -1,28 +1,8 @@
-// ===== FIREBASE IMPORT =====
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
 // ===== FIREBASE CONFIG =====
-const firebaseConfig = {
-    apiKey: "***REMOVED***",
-    authDomain: "boda-nyc.firebaseapp.com",
-    projectId: "boda-nyc",
-    storageBucket: "boda-nyc.firebasestorage.app",
-    messagingSenderId: "470601485280",
-    appId: "1:470601485280:web:21319eb00ca630800ff985"
-};
-
-// Inicializar Firebase
-let app;
-let db;
-
-try {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    console.log('Firebase inicializado correctamente');
-} catch (error) {
-    console.error('Error inicializando Firebase:', error);
-}
+// Se inicializa en firebase-init.js
+let getFirebaseDb = () => window.firebaseDb || null;
+let getFirebaseCollection = () => window.firebaseCollection || null;
+let getFirebaseAddDoc = () => window.firebaseAddDoc || null;
 
 // ===== CONFIGURACIÓN =====
 const CONFIG = {
@@ -136,7 +116,11 @@ function initFormLogic() {
 function saveToFirebase(formData) {
     // Retorna una promesa que se resuelve inmediatamente
     return new Promise((resolve) => {
-        if (!db) {
+        const db = getFirebaseDb();
+        const collection = getFirebaseCollection();
+        const addDoc = getFirebaseAddDoc();
+        
+        if (!db || !collection || !addDoc) {
             console.warn('Firebase no disponible');
             resolve();
             return;
