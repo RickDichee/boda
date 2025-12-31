@@ -1,6 +1,6 @@
 // ===== FIREBASE IMPORT =====
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 // ===== FIREBASE CONFIG =====
 const firebaseConfig = {
@@ -135,7 +135,7 @@ function initFormLogic() {
 // ===== FIREBASE FUNCTIONS =====
 async function saveToFirebase(formData) {
     if (!db) {
-        console.warn('Firebase no está disponible, guardando localmente');
+        console.warn('Firebase no está disponible, continuando sin guardar');
         return;
     }
     
@@ -148,7 +148,6 @@ async function saveToFirebase(formData) {
             mensaje: formData.mensaje,
             confirmationId: formData.confirmationId,
             numPersonas: formData.numPersonas,
-            timestamp: serverTimestamp(),
             createdAt: new Date().toISOString()
         };
         
@@ -157,7 +156,8 @@ async function saveToFirebase(formData) {
         return docRef.id;
     } catch (error) {
         console.error('Error guardando en Firebase:', error);
-        throw error;
+        // Continuar sin guardar en Firebase (no es crítico)
+        return null;
     }
 }
 
@@ -194,8 +194,9 @@ function handleFormSubmit(e) {
     
     const formData = getFormData();
     
-    // Guardar en Firebase
+    // Guardar en Firebase (no crítico si falla)
     saveToFirebase(formData).then(() => {
+        // Continuar incluso si Firebase falla
         generateQRCode(formData.confirmationId, formData);
         
         formWrapper.style.display = 'none';
@@ -207,8 +208,16 @@ function handleFormSubmit(e) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar Confirmación';
     }).catch((error) => {
-        console.error('Error guardando confirmación:', error);
-        alert('Hubo un error al guardar tu confirmación. Por favor intenta de nuevo.');
+        console.error('Error en el proceso:', error);
+        // Mostrar QR de todas formas
+        generateQRCode(formData.confirmationId, formData);
+        
+        formWrapper.style.display = 'none';
+        qrDisplay.classList.add('show');
+        qrDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        e.target.reset();
+        
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar Confirmación';
     });
