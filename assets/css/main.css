@@ -100,6 +100,28 @@ button {
     }
 }
 
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 @keyframes gentle-pulse {
     0%, 100% { 
         opacity: 0.85; 
@@ -113,6 +135,14 @@ button {
 
 .fade-in {
     animation: fadeInUp 0.8s ease forwards;
+}
+
+.slide-in-left {
+    animation: slideInFromLeft 0.8s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInFromRight 0.8s ease forwards;
 }
 /* Fondo semitransparente para secciones */
 .container, .invitacion-content, .gallery, 
