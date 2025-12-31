@@ -235,17 +235,23 @@ function generateQRCode(confirmationId, userData) {
     
     qrcodeDiv.innerHTML = '';
     
-    // Hacer el QR más simple y compacto
-    const qrData = `${userData.nombre} - ${confirmationId}`;
+    // Solo el ID de confirmación - el QR más simple posible
+    const qrData = confirmationId;
     
-    new QRCode(qrcodeDiv, {
-        text: qrData,
-        width: 250,
-        height: 250,
-        colorDark: "#1a1a1a",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.M  // Cambié de H a M para más capacidad
-    });
+    try {
+        new QRCode(qrcodeDiv, {
+            text: qrData,
+            width: 280,
+            height: 280,
+            colorDark: "#1a1a1a",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L  // L es el nivel de corrección más bajo
+        });
+        console.log('QR generado exitosamente');
+    } catch (error) {
+        console.error('Error generando QR:', error);
+        qrcodeDiv.innerHTML = '<p>Error generando QR: ' + error.message + '</p>';
+    }
 }
 
 window.downloadQR = function() {
