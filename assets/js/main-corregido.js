@@ -235,23 +235,16 @@ function generateQRCode(confirmationId, userData) {
     
     qrcodeDiv.innerHTML = '';
     
-    const qrData = `BODA NATY & CARLOS
---------------------------------
-ID de Confirmación: ${confirmationId}
-Nombre: ${userData.nombre}
-Fecha: 28 de Febrero 2026
-Lugar: Los Cedros Quinta
---------------------------------
-Este código QR es tu entrada.
-Preséntalo a la llegada.`;
+    // Hacer el QR más simple y compacto
+    const qrData = `${userData.nombre} - ${confirmationId}`;
     
     new QRCode(qrcodeDiv, {
         text: qrData,
-        width: 200,
-        height: 200,
+        width: 250,
+        height: 250,
         colorDark: "#1a1a1a",
         colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+        correctLevel: QRCode.CorrectLevel.M  // Cambié de H a M para más capacidad
     });
 }
 
