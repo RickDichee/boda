@@ -120,8 +120,11 @@ function saveToFirebase(formData) {
         const collection = getFirebaseCollection();
         const addDoc = getFirebaseAddDoc();
         
+        console.log('saveToFirebase called with:', formData);
+        console.log('Firebase disponible?', !!db, !!collection, !!addDoc);
+        
         if (!db || !collection || !addDoc) {
-            console.warn('Firebase no disponible');
+            console.warn('Firebase no disponible', { db: !!db, collection: !!collection, addDoc: !!addDoc });
             resolve();
             return;
         }
@@ -137,13 +140,15 @@ function saveToFirebase(formData) {
             createdAt: new Date().toISOString()
         };
         
+        console.log('Intentando guardar:', confirmationData);
+        
         addDoc(collection(db, 'confirmations'), confirmationData)
             .then(docRef => {
-                console.log('Guardado en Firebase:', docRef.id);
+                console.log('✅ Guardado en Firebase exitosamente:', docRef.id);
                 resolve(docRef.id);
             })
             .catch(error => {
-                console.warn('Error Firebase (no crítico):', error);
+                console.error('❌ Error Firebase:', error);
                 resolve(); // Resolver igual aunque falle
             });
     });
