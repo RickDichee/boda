@@ -313,145 +313,81 @@ body::before {
 }
 
 
-/* ===== ESTILO UNIFICADO DE FORMULARIO PARA TODAS LAS SECCIONES ===== */
-.unified-form-style,
-#ubicacion .location-details,
-#mesa-regalos .gift-details,
-#regalos,
-.gift-section {
-    /* Fondo idéntico al formulario RSVP */
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
-    
-    /* Bordes y sombras idénticas */
-    border-radius: 20px !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-    
-    /* Espaciado idéntico */
-    padding: 40px !important;
-    margin: 30px auto !important;
-    
-    /* Tipografía idéntica */
-    font-family: 'Segoe UI', 'Roboto', sans-serif !important;
-    color: #f0f0f0 !important;
-    
-    /* Ancho máximo */
-    max-width: 800px !important;
-    width: 90% !important;
-}
-
-/* ===== TÍTULOS ESTILO FORMULARIO ===== */
-.unified-form-style h2,
-.unified-form-style h3,
-.unified-form-style .subtitle {
-    font-family: 'Dancing Script', 'Playfair Display', serif !important;
+/* ===== TARJETAS UNIFICADAS (Ubicación, Regalos, No Niños, RSVP) ===== */
+/* Creamos un estilo maestro para que todos los recuadros sean idénticos */
+.location-details,
+.gift-section,
+.no-kids-banner,
+.form-wrapper {
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+    border-radius: 16px !important;
+    padding: 40px 30px !important;
+    box-shadow: 0 10px 30px rgba(61, 90, 76, 0.08) !important; /* Sombra suave verde bosque */
+    border: 1px solid rgba(184, 149, 106, 0.2) !important; /* Borde dorado sutil */
+    margin: 0 auto 30px auto !important;
+    max-width: 900px !important;
+    position: relative;
+    overflow: hidden;
     text-align: center !important;
-    margin-bottom: 25px !important;
-    color: #ffffff !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.unified-form-style h2 {
-    font-size: 2.8em !important;
-    margin-bottom: 10px !important;
-    background: linear-gradient(45deg, #e91e63, #ff9800) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
+/* Línea superior decorativa (Equilibrio de colores Forest & Gold) */
+.location-details::before,
+.gift-section::before,
+.no-kids-banner::before,
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--forest), var(--gold), var(--forest));
 }
 
-.unified-form-style .subtitle {
-    font-size: 1.2em !important;
-    color: #cccccc !important;
-    margin-bottom: 30px !important;
-    font-style: italic !important;
+/* Efecto Hover (Animación suave) */
+.location-details:hover,
+.gift-section:hover,
+.no-kids-banner:hover,
+.form-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(61, 90, 76, 0.15) !important;
 }
 
-.unified-form-style h3 {
-    font-size: 1.8em !important;
-    color: #ff9800 !important;
-    margin: 25px 0 15px 0 !important;
-    border-bottom: 2px solid rgba(255, 152, 0, 0.3) !important;
-    padding-bottom: 10px !important;
+/* Títulos dentro de las tarjetas (Consistencia tipográfica) */
+.location-details h3,
+.gift-section h3,
+.no-kids-banner h4,
+.form-wrapper h2 {
+    font-family: var(--font-cinzel);
+    color: var(--forest);
+    font-size: 2em !important;
+    margin-bottom: 20px !important;
+    text-shadow: none !important;
 }
 
-/* ===== TEXTO Y PÁRRAFOS ESTILO FORMULARIO ===== */
-.unified-form-style p {
+/* Textos dentro de las tarjetas */
+.location-details p,
+.gift-section p,
+.no-kids-banner p,
+.form-wrapper p {
+    font-family: var(--font-cormorant);
+    color: var(--grey);
     font-size: 1.1em !important;
-    line-height: 1.6 !important;
-    margin: 15px 0 !important;
-    color: #e0e0e0 !important;
+    line-height: 1.8 !important;
 }
 
-.unified-form-style p i {
-    color: #ff9800 !important;
-    margin-right: 12px !important;
-    width: 20px !important;
-    text-align: center !important;
+/* Estilo específico para el texto NO NIÑOS */
+.no-kids-banner h2 {
+    font-family: var(--font-cinzel);
+    font-size: 3em !important;
+    margin-top: 30px !important;
+    color: var(--gold) !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    letter-spacing: 2px;
 }
 
-/* ===== BOTONES ESTILO FORMULARIO ===== */
-.unified-form-style .map-btn,
-.unified-form-style .gift-btn {
-    display: inline-block !important;
-    background: linear-gradient(135deg, #e91e63 0%, #ff9800 100%) !important;
-    color: white !important;
-    padding: 14px 32px !important;
-    border-radius: 50px !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    font-size: 1.1em !important;
-    border: none !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3) !important;
-    text-align: center !important;
-    margin: 20px 0 !important;
-    cursor: pointer !important;
-    font-family: 'Segoe UI', 'Roboto', sans-serif !important;
-}
-
-.unified-form-style .map-btn:hover,
-.unified-form-style .gift-btn:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5) !important;
-    background: linear-gradient(135deg, #ff9800 0%, #e91e63 100%) !important;
-}
-
-.unified-form-style .map-btn i,
-.unified-form-style .gift-btn i {
-    margin-right: 10px !important;
-    font-size: 1.1em !important;
-}
-
-/* ===== LISTAS ESTILO FORMULARIO ===== */
-.unified-form-style ul {
-    list-style: none !important;
-    padding-left: 0 !important;
-    margin: 20px 0 !important;
-}
-
-.unified-form-style ul li {
-    padding: 12px 15px !important;
-    margin: 8px 0 !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 10px !important;
-    border-left: 4px solid #ff9800 !important;
-    transition: all 0.3s ease !important;
-}
-
-.unified-form-style ul li:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    transform: translateX(5px) !important;
-}
-
-.unified-form-style ul li i {
-    color: #e91e63 !important;
-    margin-right: 10px !important;
-}
-
-/* ===== APLICAR ESTILOS A LAS SECCIONES ===== */
 /* ===== FOOTER ===== */
 .site-footer {
     text-align: center;
