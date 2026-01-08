@@ -314,7 +314,11 @@ body::before {
 
 
 /* ===== ESTILO UNIFICADO DE FORMULARIO PARA TODAS LAS SECCIONES ===== */
-.unified-form-style {
+.unified-form-style,
+#ubicacion .location-details,
+#mesa-regalos .gift-details,
+#regalos,
+.gift-section {
     /* Fondo idéntico al formulario RSVP */
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
     
@@ -448,11 +452,13 @@ body::before {
 }
 
 /* ===== APLICAR ESTILOS A LAS SECCIONES ===== */
-#ubicacion .location-details,
-#mesa-regalos .gift-details,
-#regalos,
-.gift-section {
-    composes: unified-form-style;
+/* ===== FOOTER ===== */
+.site-footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--off-white);
+    border-top: 1px solid var(--light-grey);
+    margin-top: 60px;
 }
 
 
