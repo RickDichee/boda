@@ -15,7 +15,7 @@ const APP_DATA = {
             time: '18:00',
             period: 'Tarde',
             title: 'Llegada de invitados',
-            description: 'Recepcíon y bienvenida'
+            description: 'Recepción y bienvenida.'
         },
         {
             time: '18:30',

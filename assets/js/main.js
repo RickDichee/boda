@@ -7,7 +7,7 @@ import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.g
 const CONFIG = {
     appName: 'Naty & Carlos Boda',
     weddingDate: '28 de Febrero 2026',
-    location: 'Los Cedros Quinta',
+    location: 'Quinta Los Cedros',
     maxGuests: 2
 };
 
@@ -36,7 +36,7 @@ const APP_DATA = {
     ],
     
     timeline: [
-        { time: '6:00', period: 'PM', title: 'Recepción', description: 'Te recibiremos con cocteles y música.' },
+        { time: '6:00', period: 'PM', title: 'Llegada de invitados', description: 'Recepción y bienvenida.' },
         { time: '6:30', period: 'PM', title: 'Ceremonia Civil', description: 'Acompáñanos a decir "Sí, acepto".' },
         { time: '7:30', period: 'PM', title: 'Cena', description: 'Una deliciosa cena para celebrar juntos.' },
         { time: '8:30', period: 'PM', title: 'Fiesta', description: '¡Bailaremos hasta el amanecer!' }
@@ -128,16 +128,7 @@ function initTimeline() {
     });
 }
 
-// Lógica del formulario
-function initFormLogic() {
-    const asistenciaRadios = document.querySelectorAll('input[name="asistencia"]');
-    const numPersonasGroup = document.getElementById('numPersonasGroup');
-    const nombreAcompananteGroup = document.getElementById('nombreAcompananteGroup');
-    const numPersonasSelect = document.getElementById('numPersonas');
-    
-    if (!asistenciaRadios.length || !numPersonasGroup) return;
-    
-// Lógica del formulario (VERSIÓN SIMPLIFICADA - 1 PERSONA)
+// Lógica del formulario (VERSIÓN 1 PERSONA)
 function initFormLogic() {
     // Ya no necesitamos lógica para mostrar/ocultar campos de acompañante
     // Solo manejamos el envío del formulario
@@ -227,21 +218,6 @@ async function handleFormSubmit(e) {
     
     if (!submitBtn || !formWrapper) return;
     
-    // Validar formulario (VERSIÓN 1 PERSONA)
-    function validateForm() {
-    const nombre = document.getElementById('nombre');
-    const telefono = document.getElementById('telefono');
-    const asistencia = document.querySelector('input[name="asistencia"]:checked');
-    
-    // Solo validamos nombre, teléfono y si seleccionó asistencia
-    // Ya no validamos numPersonas porque siempre será 1
-    if (!nombre.value.trim() || !telefono.value.trim() || !asistencia) {
-        return false;
-    }
-    
-    return true;
-}
-    
     // Deshabilitar botón
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando...';
@@ -271,20 +247,15 @@ async function handleFormSubmit(e) {
     }
 }
 
-// Validar formulario
+// Validar formulario (VERSIÓN 1 PERSONA)
 function validateForm() {
     const nombre = document.getElementById('nombre');
     const telefono = document.getElementById('telefono');
     const asistencia = document.querySelector('input[name="asistencia"]:checked');
-    const numPersonas = document.getElementById('numPersonas');
     
-    // Validar campos básicos
+    // Solo validamos nombre, teléfono y si seleccionó asistencia
+    // Ya no validamos numPersonas porque siempre será 1
     if (!nombre.value.trim() || !telefono.value.trim() || !asistencia) {
-        return false;
-    }
-    
-    // Si asiste, validar número de personas
-    if (asistencia.value === 'si' && (!numPersonas.value || numPersonas.value === '')) {
         return false;
     }
     

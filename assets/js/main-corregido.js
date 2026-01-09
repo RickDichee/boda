@@ -8,7 +8,7 @@ let getFirebaseAddDoc = () => window.firebaseAddDoc || null;
 const CONFIG = {
     appName: 'Naty & Carlos Boda',
     weddingDate: '28 de Febrero 2026',
-    location: 'Salón Zimpanio',
+    location: 'Quinta Los Cedros',
     maxGuests: 1
 };
 
@@ -24,7 +24,7 @@ const APP_DATA = {
     ],
     
     timeline: [
-        { time: '18:00', period: 'Tarde', title: 'Llegada de invitados', description: 'Recepción y bienvenida con cocteles y música.' },
+        { time: '18:00', period: 'Tarde', title: 'Llegada de invitados', description: 'Recepción y bienvenida.' },
         { time: '18:30', period: 'Tarde', title: 'Ceremonia Civil', description: 'Acompáñanos a decir "Sí, acepto".' },
         { time: '19:30', period: 'Noche', title: 'Cena', description: 'Una deliciosa cena para celebrar juntos.' },
         { time: '22:00', period: 'Noche', title: 'Fiesta', description: '¡Bailaremos hasta el amanecer!' }

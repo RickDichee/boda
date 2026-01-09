@@ -48,7 +48,7 @@ function createQRData(confirmationId, userData) {
 ID de Confirmación: ${confirmationId}
 Nombre: ${userData.nombre || 'Invitado'}
 Fecha: 28 de Febrero 2026
-Lugar: Los Cedros Quinta
+Lugar: Quinta Los Cedros
 --------------------------------
 Este código QR es tu entrada.
 Preséntalo a la llegada.`;
