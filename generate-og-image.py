@@ -49,9 +49,9 @@ draw.line([(WIDTH//2 - line_width//2, 250), (WIDTH//2 + line_width//2, 250)], fi
 # Dibujar detalles
 draw.text((WIDTH//2, 330), "Nos casamos", font=font_details, fill=TEXT_COLOR, anchor="mm")
 draw.text((WIDTH//2, 400), "28 de Febrero · 2026", font=font_small, fill=FOREST_COLOR, anchor="mm")
-draw.text((WIDTH//2, 450), "Los Cedros Quinta", font=font_details, fill=SAGE_COLOR, anchor="mm")
+draw.text((WIDTH//2, 450), "Quinta Los Cedros", font=font_details, fill=SAGE_COLOR, anchor="mm")
 
 # Guardar imagen
-output_path = os.path.join(os.path.dirname(__file__), 'og-image.jpg')
+output_path = os.path.join(os.path.dirname(__file__), 'assets/images/og-image.jpg')
 img.save(output_path, 'JPEG', quality=90)
 print(f"✅ Imagen generada: {output_path}")

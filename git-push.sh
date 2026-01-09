@@ -4,7 +4,7 @@ echo "📦 Preparando cambios..."
 git add .
 
 echo "📝 Realizando commit..."
-git commit -m "Feat: Agregado mapa incrustado y optimización de imagen para WhatsApp"
+git commit -m "Fix: Cambio texto Ceremonia a Recepción y corrección nombre salón en og:image"
 
 echo "🚀 Subiendo a GitHub..."
 git push
