@@ -4,7 +4,7 @@ echo "📦 Preparando cambios..."
 git add .
 
 echo "📝 Realizando commit..."
-git commit -m "Fix: Cambio texto Ceremonia a Recepción y corrección nombre salón en og:image"
+git commit -m "Update: Reemplazo de imagen og:image por diseño personalizado optimizado"
 
 echo "🚀 Subiendo a GitHub..."
 git push

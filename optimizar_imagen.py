@@ -3,8 +3,8 @@ import os
 
 def optimizar_imagen():
     # Rutas
-    input_path = "assets/images/invitacion-whatsapp.png"
-    output_path = "assets/images/invitacion-whatsapp-opt.jpg"
+    input_path = "assets/images/invitacion-whatsapp-opt-2.png"
+    output_path = "assets/images/invitacion-whatsapp-opt-2.jpg"
     
     print(f"🔄 Procesando: {input_path}")
 
