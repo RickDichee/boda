@@ -4,7 +4,7 @@ echo "📦 Preparando cambios..."
 git add .
 
 echo "📝 Realizando commit..."
-git commit -m "Actualización: Cambio a Quinta Los Cedros, nuevo link de mapas y ajuste en cronograma"
+git commit -m "Feat: Agregado mapa incrustado y optimización de imagen para WhatsApp"
 
 echo "🚀 Subiendo a GitHub..."
 git push
