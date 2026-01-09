@@ -1,3 +1,6 @@
-*.backup
-*.backup-*
-verificar-*.sh
+# Ignorar entorno virtual de Python
+venv/
+
+# Ignorar archivos compilados y caché de Python
+__pycache__/
+*.pyc
