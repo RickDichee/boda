@@ -230,6 +230,7 @@
                         <th>Teléfono</th>
                         <th>Email</th>
                         <th>¿Asistencia?</th>
+                        <th>Mensaje</th>
                         <th>ID Confirmación</th>
                         <th>Fecha</th>
                     </tr>
@@ -261,7 +262,7 @@
         // Cargar confirmaciones
         async function loadConfirmations() {
             try {
-                const q = query(collection(db, 'confirmations'), orderBy('createdAt', 'desc'));
+                const q = query(collection(db, 'confirmations'), orderBy('timestamp', 'desc'));
                 const snapshot = await getDocs(q);
                 
                 allConfirmations = [];
@@ -290,8 +291,11 @@
 
             confirmations.forEach(conf => {
                 const row = document.createElement('tr');
-                const fecha = new Date(conf.createdAt);
-                const fechaFormato = fecha.toLocaleDateString('es-MX') + ' ' + fecha.toLocaleTimeString('es-MX');
+                
+                // Manejar el Timestamp de Firebase correctamente
+                const ts = conf.timestamp;
+                const fecha = ts ? new Date(ts.seconds * 1000) : new Date();
+                const fechaFormato = fecha.toLocaleDateString('es-MX') + ' ' + fecha.toLocaleTimeString('es-MX', {hour: '2-digit', minute:'2-digit'});
                 
                 const asistenciaClass = conf.asistencia === 'si' ? 'asistencia-si' : 'asistencia-no';
                 const asistenciaText = conf.asistencia === 'si' ? '✓ Sí' : '✗ No';
@@ -301,6 +305,7 @@
                     <td>${conf.telefono}</td>
                     <td>${conf.email}</td>
                     <td><span class="${asistenciaClass}">${asistenciaText}</span></td>
+                    <td><div style="max-width: 200px; font-size: 13px; color: #555;">${conf.mensaje || '-'}</div></td>
                     <td><code>${conf.confirmationId}</code></td>
                     <td><span class="fecha">${fechaFormato}</span></td>
                 `;
@@ -343,12 +348,14 @@
 
         // Exportar a CSV
         window.exportToCSV = function() {
-            let csv = 'Nombre,Teléfono,Email,¿Asistencia?,ID Confirmación,Fecha\n';
+            let csv = 'Nombre,Teléfono,Email,¿Asistencia?,Mensaje,ID Confirmación,Fecha\n';
             
             allConfirmations.forEach(conf => {
-                const fecha = new Date(conf.createdAt).toLocaleString('es-MX');
+                const ts = conf.timestamp;
+                const fechaObj = ts ? new Date(ts.seconds * 1000) : new Date();
+                const fecha = fechaObj.toLocaleString('es-MX');
                 const asistencia = conf.asistencia === 'si' ? 'Sí' : 'No';
-                csv += `"${conf.nombre}","${conf.telefono}","${conf.email}","${asistencia}","${conf.confirmationId}","${fecha}"\n`;
+                csv += `"${conf.nombre}","${conf.telefono}","${conf.email}","${asistencia}","${(conf.mensaje || '').replace(/"/g, '""')}","${conf.confirmationId}","${fecha}"\n`;
             });
 
             const blob = new Blob([csv], { type: 'text/csv' });

@@ -173,7 +173,12 @@ async function handleFormSubmit(e) { // Hacer la función asíncrona
     const formData = getFormData();
     
     // Generar QR inmediatamente (puede ser antes o después de guardar, según la lógica deseada)
-    generateQRCode(formData.confirmationId, formData);
+    try {
+        generateQRCode(formData.confirmationId, formData);
+    } catch (qrError) {
+        console.error('Error al generar el QR:', qrError);
+        // No bloqueamos el flujo principal si falla el QR visualmente
+    }
     
     formWrapper.style.display = 'none';
     qrDisplay.classList.add('show');

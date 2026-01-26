@@ -23,15 +23,20 @@ export function generateQRCode(confirmationId, userData = {}) {
     // Crear datos para el QR
     const qrData = createQRData(confirmationId, userData);
     
-    // Crear nueva instancia de QR
-    qrCodeInstance = new QRCode(qrcodeDiv, {
-        text: qrData,
-        width: 200,
-        height: 200,
-        colorDark: "#1a1a1a",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-    });
+    try {
+        // Crear nueva instancia de QR
+        qrCodeInstance = new QRCode(qrcodeDiv, {
+            text: qrData,
+            width: 200,
+            height: 200,
+            colorDark: "#1a1a1a",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L // Nivel L permite más datos con menos bits
+        });
+    } catch (error) {
+        console.error('Error crítico al generar QR:', error);
+        qrcodeDiv.innerHTML = '<p style="font-size:12px; color:red;">Error al generar QR visual. Tu ID es: ' + confirmationId + '</p>';
+    }
     
     console.log('QR generado para ID:', confirmationId);
 }
@@ -43,15 +48,8 @@ export function generateQRCode(confirmationId, userData = {}) {
  * @returns {string} - Texto formateado para QR
  */
 function createQRData(confirmationId, userData) {
-    return `BODA NATY & CARLOS
---------------------------------
-ID de Confirmación: ${confirmationId}
-Nombre: ${userData.nombre || 'Invitado'}
-Fecha: 28 de Febrero 2026
-Lugar: Quinta Los Cedros
---------------------------------
-Este código QR es tu entrada.
-Preséntalo a la llegada.`;
+    // Retornamos solo el ID para evitar errores de capacidad (overflow) en el QR
+    return confirmationId;
 }
 
 /**

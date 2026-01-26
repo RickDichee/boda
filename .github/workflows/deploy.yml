@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Inject Firebase API Key
+        run: |
+          # Reemplaza el placeholder en todos los archivos necesarios
+          sed -i "s/REDACTED_GOOGLE_API_KEY/${{ secrets.FIREBASE_API_KEY }}/g" assets/js/firebase.js
+          sed -i "s/REDACTED_GOOGLE_API_KEY/${{ secrets.FIREBASE_API_KEY }}/g" admin.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
