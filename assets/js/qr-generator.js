@@ -62,16 +62,21 @@ export function downloadQR() {
     }
     
     const canvas = document.querySelector('#qrcode canvas');
-    if (!canvas) {
-        console.warn('Canvas no encontrado');
-        return;
-    }
+    const img = document.querySelector('#qrcode img');
     
     try {
         // Crear enlace de descarga
         const link = document.createElement('a');
         link.download = `qr-boda-naty-carlos-${Date.now()}.png`;
-        link.href = canvas.toDataURL('image/png');
+        
+        if (canvas) {
+            link.href = canvas.toDataURL('image/png');
+        } else if (img) {
+            link.href = img.src;
+        } else {
+            throw new Error('No se encontró el elemento visual del QR');
+        }
+        
         link.click();
         
         console.log('QR descargado exitosamente');
