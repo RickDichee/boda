@@ -277,12 +277,11 @@
 
     <!-- ===== SCRIPTS ===== -->
     <!-- QRCode Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+    <!-- Nota: qrcode.min.js debe cargarse antes de main-corregido.js si este último lo usa directamente -->
     
-    <!-- Firebase Initialization (module) -->
-    <script type="module" src="assets/js/firebase-init.js"></script>
-    
-    <!-- JavaScript Principal -->
-    <script src="assets/js/main-corregido.js"></script>
+    <!-- JavaScript Principal (como módulo para permitir imports) -->
+    <script type="module" src="assets/js/main-corregido.js"></script>
+    <!-- Firebase y qr-generator se importan directamente desde main-corregido.js -->
 </body>
 </html>

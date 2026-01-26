@@ -2,9 +2,9 @@
 echo "=== VERIFICACIÓN FINAL DEL SITIO ==="
 echo ""
 
-# Verificar archivos críticos
-echo "1. Archivos críticos:"
-files=("index.html" "assets/js/main-unificado.js" "assets/css/components.css" 
+# Verificar archivos críticos (esperados en el repositorio):
+echo "1. Archivos críticos (esperados en el repositorio):"
+files=("index.html" "assets/js/main-corregido.js" "assets/js/firebase.js" "assets/js/qr-generator.js" "assets/css/main.css"
        "assets/images/fotos/foto1.jpg" "assets/images/fotos/foto2.jpg" "assets/images/fotos/foto3.jpg")
 
 all_ok=true

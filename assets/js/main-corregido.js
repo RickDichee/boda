@@ -1,9 +1,9 @@
 // ===== FIREBASE CONFIG =====
-// Se inicializa en firebase-init.js
-let getFirebaseDb = () => window.firebaseDb || null;
-let getFirebaseCollection = () => window.firebaseCollection || null;
-let getFirebaseAddDoc = () => window.firebaseAddDoc || null;
-
+// Importar funciones de Firebase (ya no se inicializa aquí)
+import { saveConfirmation } from './firebase.js';
+// Importar funciones de QR
+// Las funciones generateQRCode y downloadQR se importan de qr-generator.js
+import { generateQRCode, downloadQR } from './qr-generator.js';
 // ===== CONFIGURACIÓN =====
 const CONFIG = {
     appName: 'Naty & Carlos Boda',
@@ -113,45 +113,30 @@ function initFormLogic() {
 }
 
 // ===== FIREBASE FUNCTIONS =====
-function saveToFirebase(formData) {
-    // Retorna una promesa que se resuelve inmediatamente
-    return new Promise((resolve) => {
-        const db = getFirebaseDb();
-        const collection = getFirebaseCollection();
-        const addDoc = getFirebaseAddDoc();
-        
-        console.log('saveToFirebase called with:', formData);
-        console.log('Firebase disponible?', !!db, !!collection, !!addDoc);
-        
-        if (!db || !collection || !addDoc) {
-            console.warn('Firebase no disponible', { db: !!db, collection: !!collection, addDoc: !!addDoc });
-            resolve();
-            return;
-        }
-        
-        const confirmationData = {
-            nombre: formData.nombre,
-            telefono: formData.telefono,
-            email: formData.email,
-            asistencia: formData.asistencia,
-            mensaje: formData.mensaje,
-            confirmationId: formData.confirmationId,
-            numPersonas: formData.numPersonas,
-            createdAt: new Date().toISOString()
-        };
-        
-        console.log('Intentando guardar:', confirmationData);
-        
-        addDoc(collection(db, 'confirmations'), confirmationData)
-            .then(docRef => {
-                console.log('✅ Guardado en Firebase exitosamente:', docRef.id);
-                resolve(docRef.id);
-            })
-            .catch(error => {
-                console.error('❌ Error Firebase:', error);
-                resolve(); // Resolver igual aunque falle
-            });
-    });
+async function saveToFirebase(formData) {
+    console.log('saveToFirebase called with:', formData);
+
+    const confirmationData = {
+        nombre: formData.nombre,
+        telefono: formData.telefono,
+        email: formData.email,
+        asistencia: formData.asistencia,
+        mensaje: formData.mensaje,
+        confirmationId: formData.confirmationId,
+        numPersonas: formData.numPersonas,
+        // La fecha de creación del lado del cliente se puede omitir si se usa serverTimestamp en Firebase
+    };
+
+    console.log('Intentando guardar con saveConfirmation:', confirmationData);
+
+    try {
+        const docId = await saveConfirmation(confirmationData); // Usar la función importada
+        console.log('✅ Guardado en Firebase exitosamente:', docId);
+        return docId;
+    } catch (error) {
+        console.error('❌ Error al guardar en Firebase:', error);
+        throw error; // Re-lanzar el error para que handleFormSubmit pueda manejarlo
+    }
 }
 
 
@@ -170,7 +155,7 @@ function initScrollAnimations() {
     });
 }
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) { // Hacer la función asíncrona
     e.preventDefault();
     
     const submitBtn = document.getElementById('submitBtn');
@@ -187,22 +172,28 @@ function handleFormSubmit(e) {
     
     const formData = getFormData();
     
-    // Generar QR inmediatamente
+    // Generar QR inmediatamente (puede ser antes o después de guardar, según la lógica deseada)
     generateQRCode(formData.confirmationId, formData);
     
     formWrapper.style.display = 'none';
     qrDisplay.classList.add('show');
     qrDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
     
-    e.target.reset();
-    
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Enviar Confirmación';
-    
-    // Guardar en Firebase en background (no crítico)
-    saveToFirebase(formData).catch(err => {
-        console.warn('Firebase error (no crítico):', err);
-    });
+    // Guardar en Firebase y esperar la respuesta antes de re-habilitar el botón
+    try {
+        await saveToFirebase(formData);
+        console.log('Formulario guardado y procesado.');
+        e.target.reset(); // Resetear el formulario solo si se guardó exitosamente
+    } catch (err) {
+        console.warn('Error al guardar en Firebase:', err);
+        alert('Hubo un error al guardar tu confirmación. Por favor, inténtalo de nuevo.');
+        // Opcional: revertir la UI si el guardado es crítico
+        formWrapper.style.display = 'block';
+        qrDisplay.classList.remove('show');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Confirmación';
+    }
 }
 
 function validateForm() {
@@ -234,37 +225,5 @@ function generateConfirmationId() {
     return `NYC-${timestamp}-${randomStr}`.toUpperCase();
 }
 
-function generateQRCode(confirmationId, userData) {
-    const qrcodeDiv = document.getElementById('qrcode');
-    if (!qrcodeDiv) return;
-    
-    qrcodeDiv.innerHTML = '';
-    
-    // Solo el ID de confirmación - el QR más simple posible
-    const qrData = confirmationId;
-    
-    try {
-        new QRCode(qrcodeDiv, {
-            text: qrData,
-            width: 280,
-            height: 280,
-            colorDark: "#1a1a1a",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.L  // L es el nivel de corrección más bajo
-        });
-        console.log('QR generado exitosamente');
-    } catch (error) {
-        console.error('Error generando QR:', error);
-        qrcodeDiv.innerHTML = '<p>Error generando QR: ' + error.message + '</p>';
-    }
-}
-
-window.downloadQR = function() {
-    const canvas = document.querySelector('#qrcode canvas');
-    if (!canvas) return;
-    
-    const link = document.createElement('a');
-    link.download = `qr-boda-naty-carlos-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-};
+// Exponer downloadQR globalmente para que el botón HTML (onclick="downloadQR()") funcione
+window.downloadQR = downloadQR;

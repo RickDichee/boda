@@ -16,8 +16,8 @@ else
 fi
 
 echo ""
-echo "2. Archivos críticos:"
-files=("index.html" "assets/js/main-corregido.js" "assets/css/main.css" 
+echo "2. Archivos críticos (esperados en el repositorio):"
+files=("index.html" "assets/js/main-corregido.js" "assets/js/firebase.js" "assets/js/qr-generator.js" "assets/css/main.css"
        "assets/images/fotos/foto1.jpg" "assets/images/fotos/foto2.jpg" "assets/images/fotos/foto3.jpg")
 
 for file in "${files[@]}"; do
@@ -30,12 +30,12 @@ for file in "${files[@]}"; do
 done
 
 echo ""
-echo "3. JavaScript:"
-if grep -q "main-corregido.js" index.html; then
-    echo "   ✅ main-corregido.js cargado en HTML"
+echo "3. Carga de JavaScript en index.html:"
+if grep -q "<script type=\"module\" src=\"assets/js/main-corregido.js\"></script>" index.html; then
+    echo "   ✅ main-corregido.js cargado como módulo en HTML"
 else
-    echo "   ❌ main-corregido.js NO cargado"
-    echo "   Ejecuta: sed -i 's|main.js|main-corregido.js|' index.html"
+    echo "   ❌ main-corregido.js NO cargado correctamente como módulo"
+    echo "   Asegúrate de que index.html contenga: <script type=\"module\" src=\"assets/js/main-corregido.js\"></script>"
 fi
 
 echo ""
