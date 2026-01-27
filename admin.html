@@ -276,10 +276,10 @@
                 });
 
                 // Ordenamos en el cliente para asegurar que aparezcan todos,
-                // incluso los que no tienen el campo 'timestamp'.
+                // incluso los que no tienen el campo 'timestamp' (usando createdAt como fallback).
                 allConfirmations.sort((a, b) => {
-                    const timeA = a.timestamp?.seconds || 0;
-                    const timeB = b.timestamp?.seconds || 0;
+                    const timeA = a.timestamp?.seconds || (a.createdAt ? new Date(a.createdAt).getTime() / 1000 : 0);
+                    const timeB = b.timestamp?.seconds || (b.createdAt ? new Date(b.createdAt).getTime() / 1000 : 0);
                     return timeB - timeA;
                 });
 
@@ -303,8 +303,11 @@
                 const row = document.createElement('tr');
                 
                 // Manejar el Timestamp de Firebase correctamente
+                // Si no hay timestamp, intentamos usar createdAt (formato antiguo)
                 const ts = conf.timestamp;
-                const fecha = ts ? new Date(ts.seconds * 1000) : new Date();
+                const fecha = ts ? new Date(ts.seconds * 1000) : 
+                             (conf.createdAt ? new Date(conf.createdAt) : new Date());
+                
                 const fechaFormato = fecha.toLocaleDateString('es-MX') + ' ' + fecha.toLocaleTimeString('es-MX', {hour: '2-digit', minute:'2-digit'});
                 
                 const asistenciaClass = conf.asistencia === 'si' ? 'asistencia-si' : 'asistencia-no';
@@ -362,7 +365,8 @@
             
             allConfirmations.forEach(conf => {
                 const ts = conf.timestamp;
-                const fechaObj = ts ? new Date(ts.seconds * 1000) : new Date();
+                const fechaObj = ts ? new Date(ts.seconds * 1000) : 
+                                (conf.createdAt ? new Date(conf.createdAt) : new Date());
                 const fecha = fechaObj.toLocaleString('es-MX');
                 const asistencia = conf.asistencia === 'si' ? 'Sí' : 'No';
                 csv += `"${conf.nombre}","${conf.telefono}","${conf.email}","${asistencia}","${(conf.mensaje || '').replace(/"/g, '""')}","${conf.confirmationId}","${fecha}"\n`;
