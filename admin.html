@@ -194,6 +194,20 @@
             font-size: 14px;
             display: none;
         }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -233,6 +247,7 @@
                         <th>Mensaje</th>
                         <th>ID Confirmación</th>
                         <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
@@ -242,7 +257,7 @@
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, query, orderBy, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getFirestore, collection, query, orderBy, getDocs, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
         const firebaseConfig = {
             // apiKey removed from repository for security. Set via deployment env var or config.
@@ -321,10 +336,25 @@
                     <td><div style="max-width: 200px; font-size: 13px; color: #555;">${conf.mensaje || '-'}</div></td>
                     <td><code>${conf.confirmationId}</code></td>
                     <td><span class="fecha">${fechaFormato}</span></td>
+                    <td><button class="delete-btn" onclick="window.deleteConfirmation('${conf.id}', '${conf.nombre}')">Eliminar</button></td>
                 `;
                 tbody.appendChild(row);
             });
         }
+
+        // Función para eliminar confirmación
+        window.deleteConfirmation = async function(docId, nombre) {
+            if (confirm(`¿Estás seguro de que deseas eliminar la confirmación de "${nombre}"?`)) {
+                try {
+                    await deleteDoc(doc(db, 'confirmations', docId));
+                    alert('Confirmación eliminada con éxito');
+                    loadConfirmations(); // Recargar la lista
+                } catch (error) {
+                    console.error('Error al eliminar:', error);
+                    alert('Error al eliminar: ' + error.message);
+                }
+            }
+        };
 
         function updateStats() {
             const total = allConfirmations.length;
