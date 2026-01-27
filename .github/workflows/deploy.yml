@@ -22,8 +22,8 @@ jobs:
       - name: Inject Firebase API Key
         run: |
           # Reemplaza el placeholder en todos los archivos necesarios
-          sed -i "s/REDACTED_GOOGLE_API_KEY/${{ secrets.FIREBASE_API_KEY }}/g" assets/js/firebase.js
-          sed -i "s/REDACTED_GOOGLE_API_KEY/${{ secrets.FIREBASE_API_KEY }}/g" admin.html
+          sed -i "s|REDACTED_GOOGLE_API_KEY|${{ secrets.FIREBASE_API_KEY }}|g" assets/js/firebase.js
+          sed -i "s|REDACTED_GOOGLE_API_KEY|${{ secrets.FIREBASE_API_KEY }}|g" admin.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

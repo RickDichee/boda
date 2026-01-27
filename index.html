@@ -186,22 +186,22 @@
             
             <form id="rsvpForm" class="rsvp-form">
                 <div class="form-group">
-                    <label class="form-label">Nombre Completo *</label>
-                    <input type="text" id="nombre" class="form-input" required placeholder="Tu nombre completo">
+                    <label class="form-label" for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" class="form-input" required placeholder="Tu nombre completo" autocomplete="name">
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">Teléfono *</label>
-                    <input type="tel" id="telefono" class="form-input" required placeholder="Tu número de teléfono">
+                    <label class="form-label" for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" class="form-input" required placeholder="Tu número de teléfono" autocomplete="tel">
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" id="email" class="form-input" placeholder="tu@email.com">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="tu@email.com" autocomplete="email">
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">¿Asistirás? *</label>
+                    <label class="form-label" for="si">¿Asistirás? *</label>
                     <div class="radio-grid">
                         <div class="radio-item">
                             <input type="radio" id="si" name="asistencia" value="si" required>
@@ -217,7 +217,7 @@
                 <!-- NOTA: Solo 1 persona, sin campos de acompañante -->
                 
                 <div class="form-group">
-                    <label class="form-label">Mensaje (Opcional)</label>
+                    <label class="form-label" for="mensaje">Mensaje (Opcional)</label>
                     <textarea id="mensaje" class="form-textarea" placeholder="Escribe un mensaje especial para nosotros..."></textarea>
                 </div>
                 

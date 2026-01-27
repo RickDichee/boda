@@ -262,8 +262,10 @@
         // Cargar confirmaciones
         async function loadConfirmations() {
             try {
-                const q = query(collection(db, 'confirmations'), orderBy('timestamp', 'desc'));
-                const snapshot = await getDocs(q);
+                // Traemos toda la colección. Firestore omite documentos si usamos orderBy 
+                // en campos que no existen en registros antiguos.
+                const colRef = collection(db, 'confirmations');
+                const snapshot = await getDocs(colRef);
                 
                 allConfirmations = [];
                 snapshot.forEach((doc) => {
@@ -271,6 +273,14 @@
                         id: doc.id,
                         ...doc.data()
                     });
+                });
+
+                // Ordenamos en el cliente para asegurar que aparezcan todos,
+                // incluso los que no tienen el campo 'timestamp'.
+                allConfirmations.sort((a, b) => {
+                    const timeA = a.timestamp?.seconds || 0;
+                    const timeB = b.timestamp?.seconds || 0;
+                    return timeB - timeA;
                 });
 
                 displayConfirmations(allConfirmations);
